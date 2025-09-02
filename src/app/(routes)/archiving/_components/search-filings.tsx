@@ -83,7 +83,7 @@ export default function ArchivedProcessSearch({ filings }: ArchivedProcessSearch
             </div>
 
             {/* Contador de resultados */}
-            <p className="mb-4 text-muted-foreground">
+            <p className="mb-4 text-muted-foreground text-xs">
                 Total de arquivamentos registrados no sistema: {filteredResults.length}
             </p>
 

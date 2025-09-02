@@ -69,7 +69,7 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
     return (
         <div className="flex flex-col w-full h-full p-2">
             <h2 className="text-lg font-semibold">Novo Arquivamento</h2>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground mb-4">
                 Adicione um novo arquivamento
             </p>
             <Form {...form}>
