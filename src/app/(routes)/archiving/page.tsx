@@ -25,13 +25,12 @@ const Home = async () => {
             <PageHeader>
                 <PageHeaderContent>
                     <PageTitle>Arquivamento de processos</PageTitle>
-                    <PageDescription>Registre e gerencia os processos arquivados.</PageDescription>
+                    <PageDescription>Registre e gerencie os processos arquivados.</PageDescription>
                 </PageHeaderContent>
             </PageHeader>
             <PageContent>
                 <div className="flex flex-row justify-between">
                     <ArchivedProcessSearch filings={filings} />
-                    {/* <AddArchivingForm /> */}
                 </div>
             </PageContent>
         </PageContainer>
