@@ -6,7 +6,6 @@ import { PageContainer, PageContent, PageDescription, PageHeader, PageHeaderCont
 import { db } from "@/db";
 import { auth } from "@/lib/auth";
 
-import AddArchivingForm from "./_components/add-archiving-form";
 import ArchivedProcessSearch from "./_components/search-filings";
 
 
@@ -32,7 +31,7 @@ const Home = async () => {
             <PageContent>
                 <div className="flex flex-row justify-between">
                     <ArchivedProcessSearch filings={filings} />
-                    <AddArchivingForm />
+                    {/* <AddArchivingForm /> */}
                 </div>
             </PageContent>
         </PageContainer>

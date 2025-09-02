@@ -67,7 +67,7 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
     const onSubmit = (values: FormValues) => execute(values);
 
     return (
-        <div className="flex flex-col w-1/3 h-full border-1 border-border shadow-lg p-4 rounded-lg">
+        <div className="flex flex-col w-full h-full p-2">
             <h2 className="text-lg font-semibold mb-4">Novo Arquivamento</h2>
             <p className="text-sm text-muted-foreground mb-6">
                 Adicione um novo arquivamento
@@ -168,6 +168,7 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
                         name="filingDate"
                         render={({ field }) => (
                             <FormItem>
+                                <FormLabel>Data de arquivamento</FormLabel>
                                 <FormControl>
                                     <Input
                                         type="date"

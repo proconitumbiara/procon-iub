@@ -2,7 +2,7 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import { cva, VariantProps } from "class-variance-authority"
-import { Menu, X } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
@@ -273,7 +273,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      {state === "expanded" ? <X /> : <Menu />}
+      {state === "expanded" ? <ChevronLeft /> : <ChevronRight />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
@@ -342,7 +342,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
     >
       <div className="flex-1 flex flex-col items-center min-w-0 group-data-[state=collapsed]:hidden">
         <h1 className="text-xl font-bold text-primary">PROCON</h1>
-        <span className="text-sm text-muted-foreground">Itumbiara - GO</span>
+        <span className="text-sm text-muted-foreground">Sistema de arquivamentos</span>
       </div>
       <SidebarTrigger />
     </div>
