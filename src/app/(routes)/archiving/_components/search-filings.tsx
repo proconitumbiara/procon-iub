@@ -61,14 +61,8 @@ export default function ArchivedProcessSearch({ filings }: ArchivedProcessSearch
         // Filtro por data de arquivamento
         if (selectedDate) {
             filtered = filtered.filter((proc) => {
-                if (!proc.filingDate) return false;
-                const filingDate = new Date(proc.filingDate);
-                const selectedDateObj = new Date(selectedDate);
-                return (
-                    filingDate.getDate() === selectedDateObj.getDate() &&
-                    filingDate.getMonth() === selectedDateObj.getMonth() &&
-                    filingDate.getFullYear() === selectedDateObj.getFullYear()
-                );
+                // Agora filingDate é sempre string no formato YYYY-MM-DD
+                return proc.filingDate === selectedDate;
             });
         }
 
@@ -101,16 +95,19 @@ export default function ArchivedProcessSearch({ filings }: ArchivedProcessSearch
         }
     };
 
-    const formatDate = (date?: Date | string | null) => {
+    const formatDate = (date?: string | Date | null) => {
         if (!date) return "-";
 
-        // Se for string, converte para Date
-        const dateObj = typeof date === 'string' ? new Date(date) : date;
+        // Se for string (formato YYYY-MM-DD), converte diretamente
+        if (typeof date === 'string') {
+            const [year, month, day] = date.split('-');
+            return `${day}/${month}/${year}`;
+        }
 
-        // Formata no padrão DD/MM/AAAA sem conversão de timezone
-        const day = dateObj.getDate().toString().padStart(2, '0');
-        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-        const year = dateObj.getFullYear();
+        // Se for Date object (para createdAt/updatedAt), formata normalmente
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
 
         return `${day}/${month}/${year}`;
     };

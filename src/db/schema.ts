@@ -1,5 +1,6 @@
 import {
   boolean,
+  date,
   integer,
   pgTable,
   text,
@@ -66,7 +67,7 @@ export const archivedProcessesTable = pgTable("archived_processes", {
   supplierName: text("supplier_name").notNull(),
   processFolderNumber: text("process_folder_number").notNull(),
   numberOfPages: integer("number_of_pages").notNull(),
-  filingDate: timestamp("filing_date").notNull(),
+  filingDate: date("filing_date").notNull(),
   status: text("status").notNull().default("archived"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")

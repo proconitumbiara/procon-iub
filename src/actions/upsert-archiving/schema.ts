@@ -19,7 +19,7 @@ export const UpdateTicketSchema = z.object({
   supplierName: z.string().optional(),
   processFolderNumber: z.string().optional(),
   numberOfPages: z.number().optional(),
-  filingDate: z.date().optional(),
+  filingDate: z.string().optional(),
 });
 
 export const CreateTicketSchema = z.object({
@@ -28,10 +28,7 @@ export const CreateTicketSchema = z.object({
   supplierName: z.string().min(1, "Nome do fornecedor é obrigatório"),
   processFolderNumber: z.string().min(1, "Número da pasta do processo é obrigatório"),
   numberOfPages: z.number().min(1, "Número de páginas é obrigatório"),
-  filingDate: z.date({
-    required_error: "Data de arquivamento é obrigatória.",
-    invalid_type_error: "Data inválida.",
-  }),
+  filingDate: z.string().min(1, "Data de arquivamento é obrigatória."),
 });
 
 

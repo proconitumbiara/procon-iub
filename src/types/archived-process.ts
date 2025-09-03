@@ -5,7 +5,7 @@ export interface ArchivedProcess {
     supplierName: string;
     processFolderNumber: string;
     numberOfPages: number;
-    filingDate?: Date | null;
+    filingDate: string; // Formato YYYY-MM-DD
     status: "archived" | "filed_and_checked";
     createdAt?: Date | null;
     updatedAt?: Date | null;

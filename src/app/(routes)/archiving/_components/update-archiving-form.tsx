@@ -25,7 +25,7 @@ const formSchema = z.object({
     supplierName: z.string().min(1, "Obrigatório"),
     processFolderNumber: z.string().min(1, "Obrigatório"),
     numberOfPages: z.coerce.number().min(1, "Obrigatório"),
-    filingDate: z.date({ required_error: "Obrigatório" }),
+    filingDate: z.string().min(1, "Obrigatório"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -44,7 +44,7 @@ export default function UpdateArchivedProcessForm({ process, onSuccess }: Update
             supplierName: process.supplierName,
             processFolderNumber: process.processFolderNumber,
             numberOfPages: process.numberOfPages,
-            filingDate: process.filingDate || new Date(),
+            filingDate: process.filingDate,
         },
     });
 
@@ -156,13 +156,11 @@ export default function UpdateArchivedProcessForm({ process, onSuccess }: Update
                         name="filingDate"
                         render={({ field }) => (
                             <FormItem>
+                                <FormLabel>Data de Arquivamento</FormLabel>
                                 <FormControl>
                                     <Input
                                         type="date"
-                                        value={field.value ? field.value.toISOString().split("T")[0] : ""}
-                                        onChange={(e) =>
-                                            field.onChange(e.target.value ? new Date(e.target.value) : null)
-                                        }
+                                        {...field}
                                     />
                                 </FormControl>
                                 <FormMessage />
