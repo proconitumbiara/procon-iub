@@ -44,8 +44,14 @@ export async function GET(request: NextRequest) {
         const pageWidth = pdf.internal.pageSize.getWidth();
         const pageHeight = pdf.internal.pageSize.getHeight();
         const margin = 20;
-        const lineHeight = 6;
+        const lineHeight = 6.9; // 6 * 1.15 = 6.9
         let yPosition = margin + 20;
+
+        // Nome procon
+        pdf.setFontSize(18);
+        pdf.setFont("helvetica", "bold");
+        pdf.text("Arquivamentos Procon Itumbiara", pageWidth / 2, yPosition, { align: "center" });
+        yPosition += 20;
 
         // Título
         pdf.setFontSize(16);
@@ -53,19 +59,19 @@ export async function GET(request: NextRequest) {
         pdf.text("Caixa " + processFolderNumber, pageWidth / 2, yPosition, { align: "center" });
         yPosition += 20;
 
-        // Lista de processos em 2 colunas
-        pdf.setFontSize(12);
+        // Lista de processos em 2 colunas centralizadas
+        pdf.setFontSize(14);
         pdf.setFont("helvetica", "bold");
-        pdf.text("Números dos Processos:", margin, yPosition);
+        pdf.text("Processos Arquivados:", pageWidth / 2, yPosition, { align: "center" });
         yPosition += 15;
 
         pdf.setFont("helvetica", "normal");
-        pdf.setFontSize(9);
+        pdf.setFontSize(14); // Aumentei a fonte de 12 para 14
 
-        // Configurações das colunas
+        // Configurações das colunas centralizadas
         const colWidth = (pageWidth - 2 * margin) / 2;
-        const col1X = margin;
-        const col2X = margin + colWidth;
+        const col1X = margin + colWidth / 2; // Centralizar primeira coluna
+        const col2X = margin + colWidth + colWidth / 2; // Centralizar segunda coluna
 
         // Distribuir processos em 2 colunas de forma equilibrada
         const processesPerColumn = Math.ceil(processes.length / 2);
@@ -94,9 +100,9 @@ export async function GET(request: NextRequest) {
                 yPosition = margin + 20;
                 const newRowIndex = index % processesPerColumn;
                 const newCurrentY = yPosition + (newRowIndex * lineHeight);
-                pdf.text(`${index + 1}. ${process.caseNumber}`, xPosition, newCurrentY);
+                pdf.text(`${index + 1}. ${process.caseNumber}`, xPosition, newCurrentY, { align: "center" });
             } else {
-                pdf.text(`${index + 1}. ${process.caseNumber}`, xPosition, currentY);
+                pdf.text(`${index + 1}. ${process.caseNumber}`, xPosition, currentY, { align: "center" });
             }
         });
 
@@ -107,7 +113,7 @@ export async function GET(request: NextRequest) {
             pdf.setFontSize(8);
             pdf.setFont("helvetica", "normal");
             pdf.text(
-                `Página ${i} de ${totalPages} - Total de processos: ${processes.length}`,
+                `Arquivamentos Procon Itumbiara  - Caixa ${processFolderNumber} - Total de processos: ${processes.length}`,
                 pageWidth / 2,
                 pageHeight - 10,
                 { align: "center" }

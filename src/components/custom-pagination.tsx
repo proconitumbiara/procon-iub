@@ -23,7 +23,7 @@ export function CustomPagination({ total, currentPage, onPageChange }: CustomPag
 
     return (
         <ShadPagination>
-            <PaginationContent>
+            <PaginationContent className="mt-4">
                 {/* Botão anterior */}
                 {currentPage > 1 && (
                     <PaginationItem>
