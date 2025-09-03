@@ -17,6 +17,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { formatName } from "@/lib/utils";
 
 const formSchema = z.object({
     caseNumber: z.string().min(1, "Obrigatório"),
@@ -105,11 +106,9 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
                                     <Input
                                         placeholder="Nome do consumidor"
                                         {...field}
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                                .toLowerCase()
-                                                .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza
-                                            field.onChange(value);
+                                        onBlur={(e) => {
+                                            const formattedValue = formatName(e.target.value);
+                                            field.onChange(formattedValue);
                                         }}
                                     />
                                 </FormControl>
@@ -128,11 +127,9 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
                                     <Input
                                         placeholder="Nome do fornecedor"
                                         {...field}
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                                .toLowerCase()
-                                                .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza
-                                            field.onChange(value);
+                                        onBlur={(e) => {
+                                            const formattedValue = formatName(e.target.value);
+                                            field.onChange(formattedValue);
                                         }}
                                     />
                                 </FormControl>

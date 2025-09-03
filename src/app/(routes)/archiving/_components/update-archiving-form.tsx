@@ -17,6 +17,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { formatName } from "@/lib/utils";
 import { ArchivedProcess } from "@/types/archived-process";
 
 const formSchema = z.object({
@@ -86,11 +87,9 @@ export default function UpdateArchivedProcessForm({ process, onSuccess }: Update
                                     <Input
                                         placeholder="Nome do consumidor"
                                         {...field}
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                                .toLowerCase()
-                                                .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza
-                                            field.onChange(value);
+                                        onBlur={(e) => {
+                                            const formattedValue = formatName(e.target.value);
+                                            field.onChange(formattedValue);
                                         }}
                                     />
                                 </FormControl>
@@ -109,11 +108,9 @@ export default function UpdateArchivedProcessForm({ process, onSuccess }: Update
                                     <Input
                                         placeholder="Nome do fornecedor"
                                         {...field}
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                                .toLowerCase()
-                                                .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza
-                                            field.onChange(value);
+                                        onBlur={(e) => {
+                                            const formattedValue = formatName(e.target.value);
+                                            field.onChange(formattedValue);
                                         }}
                                     />
                                 </FormControl>
@@ -121,7 +118,6 @@ export default function UpdateArchivedProcessForm({ process, onSuccess }: Update
                             </FormItem>
                         )}
                     />
-
 
                     <FormField
                         control={form.control}

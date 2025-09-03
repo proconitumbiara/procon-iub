@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth.client";
+import { formatName } from "@/lib/utils";
 
 const registerSchema = z.object({
     name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
@@ -99,7 +100,13 @@ export function SignUpForm() {
                                         <FormItem>
                                             <FormLabel>Nome:</FormLabel>
                                             <FormControl>
-                                                <Input {...field} placeholder="Digite seu nome" />
+                                                <Input
+                                                    placeholder="Digite seu nome"
+                                                    onBlur={(e) => {
+                                                        const formattedValue = formatName(e.target.value);
+                                                        field.onChange(formattedValue);
+                                                    }}
+                                                />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
