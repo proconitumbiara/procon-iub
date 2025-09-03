@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { PageContainer, PageContent, PageDescription, PageHeader, PageHeaderContent, PageTitle } from "@/components/ui/page-container";
 import { db } from "@/db";
 import { auth } from "@/lib/auth";
+import { ArchivedProcess } from "@/types/archived-process";
 
 import ArchivedProcessSearch from "./_components/search-filings";
 
@@ -20,6 +21,12 @@ const Home = async () => {
 
     const filings = await db.query.archivedProcessesTable.findMany();
 
+    // Cast dos dados para o tipo correto
+    const typedFilings: ArchivedProcess[] = filings.map(filing => ({
+        ...filing,
+        status: filing.status as "archived" | "filed_and_checked"
+    }));
+
     return (
         <PageContainer>
             <PageHeader>
@@ -30,7 +37,7 @@ const Home = async () => {
             </PageHeader>
             <PageContent>
                 <div className="flex flex-row justify-between">
-                    <ArchivedProcessSearch filings={filings} />
+                    <ArchivedProcessSearch filings={typedFilings} />
                 </div>
             </PageContent>
         </PageContainer>
