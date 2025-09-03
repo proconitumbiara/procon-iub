@@ -140,9 +140,9 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
                         name="processFolderNumber"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Nº da Pasta</FormLabel>
+                                <FormLabel>Nº da Caixa</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Número da pasta" {...field} />
+                                    <Input placeholder="Número da caixa" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

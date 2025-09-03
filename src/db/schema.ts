@@ -67,6 +67,7 @@ export const archivedProcessesTable = pgTable("archived_processes", {
   processFolderNumber: text("process_folder_number").notNull(),
   numberOfPages: integer("number_of_pages").notNull(),
   filingDate: timestamp("filing_date").notNull(),
+  status: text("status").notNull().default("archived"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

@@ -113,6 +113,7 @@ export const upsertArchivedProcess = actionClient
                     filingDate: parsedInput.filingDate
                         ? new Date(parsedInput.filingDate)
                         : new Date(),
+                    status: "archived",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 })
