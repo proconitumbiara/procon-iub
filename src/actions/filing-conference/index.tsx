@@ -43,7 +43,7 @@ export const checkArquiving = actionClient
         // 🔹 Criar log
         await db.insert(logsTable).values({
             action: "conference",
-            description: `Processo ${existing.caseNumber} conferido e arquivado`,
+            description: `Processo ${existing.caseNumber} conferido`,
             userId,
             archivedProcessId: parsedInput.id,
             createdAt: new Date(),
