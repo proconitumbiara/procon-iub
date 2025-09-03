@@ -7,6 +7,7 @@ import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { ArchivedProcess } from "@/types/archived-process";
 
+import GenerateBoxPDF from "./_components/generate-box-pdf";
 import ArchivedProcessSearch from "./_components/search-filings";
 
 
@@ -36,8 +37,13 @@ const Home = async () => {
                 </PageHeaderContent>
             </PageHeader>
             <PageContent>
-                <div className="flex flex-row justify-between">
-                    <ArchivedProcessSearch filings={typedFilings} />
+                <div className="flex flex-col gap-6">
+                    <div className="flex flex-row justify-between">
+                        <ArchivedProcessSearch filings={typedFilings} />
+                    </div>
+                    <div className="flex flex-row justify-start">
+                        <GenerateBoxPDF />
+                    </div>
                 </div>
             </PageContent>
         </PageContainer>
