@@ -64,7 +64,14 @@ export default function AddArchivedProcessForm({ onSuccess }: AddArchivedProcess
         onError: () => toast.error("Erro ao adicionar arquivamento."),
     });
 
-    const onSubmit = (values: FormValues) => execute(values);
+    const onSubmit = (values: FormValues) => {
+        // Converter Date para string no formato YYYY-MM-DD
+        const valuesWithStringDate = {
+            ...values,
+            filingDate: values.filingDate.toISOString().split('T')[0]
+        };
+        execute(valuesWithStringDate);
+    };
 
     return (
         <div className="flex flex-col w-full h-full p-2">
