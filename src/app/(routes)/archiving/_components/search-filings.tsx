@@ -208,7 +208,7 @@ export default function ArchivedProcessSearch({ filings }: ArchivedProcessSearch
                                         onClick={() => proc.status === "archived" && handleCheckArchiving(proc.id)}
                                         variant="default"
                                         size="sm"
-                                        className="mt-2"
+                                        className="mt-2 text-white"
                                         disabled={proc.status === "filed_and_checked"}
                                     >
                                         {proc.status === "archived" ? "Marcar como conferido" : "Arquivamento conferido"}

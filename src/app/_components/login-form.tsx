@@ -110,7 +110,7 @@ const LoginForm = () => {
                 <CardFooter className="p-0">
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full text-white"
                     disabled={formLogin.formState.isSubmitting}
                   >
                     {formLogin.formState.isSubmitting ? "Entrando..." : "Entrar"}
@@ -118,7 +118,7 @@ const LoginForm = () => {
                 </CardFooter>
               </form>
             </Form>
-            <Button variant="ghost" className="hover:bg-transparent font-extralight hover:text-primary hover:font-bold">
+            <Button variant="link" className="hover:bg-transparent font-extralight hover:text-primary hover:font-bold">
               <Link href="/sign-up">
                 Cadastre-se no sistema
               </Link>

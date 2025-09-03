@@ -147,14 +147,14 @@ export function SignUpForm() {
 
                                 <Button
                                     type="submit"
-                                    className="w-full"
+                                    className="w-full text-white"
                                     disabled={formRegister.formState.isSubmitting}
                                 >
                                     {formRegister.formState.isSubmitting ? "Cadastrando..." : "Cadastrar"}
                                 </Button>
                             </form>
                         </Form>
-                        <Button variant="ghost" className="hover:bg-transparent font-extralight hover:text-primary hover:font-bold">
+                        <Button variant="link" className="hover:bg-transparent font-extralight hover:text-primary hover:font-bold">
                             <Link href="/">
                                 Fazer login no sistema
                             </Link>
