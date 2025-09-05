@@ -48,13 +48,13 @@ export async function GET(request: NextRequest) {
         let yPosition = margin + 20;
 
         // Nome procon
-        pdf.setFontSize(18);
+        pdf.setFontSize(30);
         pdf.setFont("helvetica", "bold");
         pdf.text("Arquivamentos Procon Itumbiara", pageWidth / 2, yPosition, { align: "center" });
         yPosition += 20;
 
         // Título
-        pdf.setFontSize(16);
+        pdf.setFontSize(36);
         pdf.setFont("helvetica", "bold");
         pdf.text("Caixa " + processFolderNumber, pageWidth / 2, yPosition, { align: "center" });
         yPosition += 20;
@@ -68,10 +68,12 @@ export async function GET(request: NextRequest) {
         pdf.setFont("helvetica", "normal");
         pdf.setFontSize(14); // Aumentei a fonte de 12 para 14
 
-        // Configurações das colunas centralizadas
-        const colWidth = (pageWidth - 2 * margin) / 2;
+        // Configurações das colunas centralizadas e aproximadas
+        const colSpacing = 7; // Espaçamento entre as colunas
+        const totalContentWidth = pageWidth - 2 * margin;
+        const colWidth = (totalContentWidth - colSpacing) / 2;
         const col1X = margin + colWidth / 2; // Centralizar primeira coluna
-        const col2X = margin + colWidth + colWidth / 2; // Centralizar segunda coluna
+        const col2X = margin + colWidth + colSpacing + colWidth / 2; // Centralizar segunda coluna
 
         // Distribuir processos em 2 colunas de forma equilibrada
         const processesPerColumn = Math.ceil(processes.length / 2);
