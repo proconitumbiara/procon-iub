@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
         const pageWidth = pdf.internal.pageSize.getWidth();
         const pageHeight = pdf.internal.pageSize.getHeight();
         const margin = 20;
-        const lineHeight = 6.9; // 6 * 1.15 = 6.9
+        const lineHeight = 7; // Altura da linha ajustada para melhor espaçamento
         let yPosition = margin + 20;
 
         // Nome procon
@@ -60,20 +60,23 @@ export async function GET(request: NextRequest) {
         yPosition += 20;
 
         // Lista de processos em 2 colunas centralizadas
-        pdf.setFontSize(16);
+        pdf.setFontSize(14);
         pdf.setFont("helvetica", "bold");
         pdf.text("Processos Arquivados:", pageWidth / 2, yPosition, { align: "center" });
         yPosition += 15;
 
         pdf.setFont("helvetica", "normal");
-        pdf.setFontSize(16); // Aumentei a fonte de 12 para 14
+        pdf.setFontSize(10); // Aumentei a fonte de 12 para 14
 
         // Configurações das colunas centralizadas e aproximadas
-        const colSpacing = 7; // Espaçamento entre as colunas
+        const colSpacing = 2; // Espaçamento mínimo entre as colunas para ficarem mais próximas
         const totalContentWidth = pageWidth - 2 * margin;
         const colWidth = (totalContentWidth - colSpacing) / 2;
-        const col1X = margin + colWidth / 2; // Centralizar primeira coluna
-        const col2X = margin + colWidth + colSpacing + colWidth / 2; // Centralizar segunda coluna
+
+        // Centralizar as colunas na página
+        const centerX = pageWidth / 2;
+        const col1X = centerX - colSpacing / 2 - colWidth / 2; // Primeira coluna à esquerda do centro
+        const col2X = centerX + colSpacing / 2 + colWidth / 2; // Segunda coluna à direita do centro
 
         // Distribuir processos em 2 colunas de forma equilibrada
         const processesPerColumn = Math.ceil(processes.length / 2);
