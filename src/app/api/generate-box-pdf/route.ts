@@ -48,25 +48,25 @@ export async function GET(request: NextRequest) {
         let yPosition = margin + 20;
 
         // Nome procon
-        pdf.setFontSize(30);
+        pdf.setFontSize(42);
         pdf.setFont("helvetica", "bold");
-        pdf.text("Arquivamentos Procon Itumbiara", pageWidth / 2, yPosition, { align: "center" });
+        pdf.text("Procon Itumbiara", pageWidth / 2, yPosition, { align: "center" });
         yPosition += 20;
 
         // Título
-        pdf.setFontSize(36);
+        pdf.setFontSize(48);
         pdf.setFont("helvetica", "bold");
-        pdf.text("Caixa " + processFolderNumber, pageWidth / 2, yPosition, { align: "center" });
+        pdf.text("CAIXA " + processFolderNumber, pageWidth / 2, yPosition, { align: "center" });
         yPosition += 20;
 
         // Lista de processos em 2 colunas centralizadas
-        pdf.setFontSize(14);
+        pdf.setFontSize(16);
         pdf.setFont("helvetica", "bold");
         pdf.text("Processos Arquivados:", pageWidth / 2, yPosition, { align: "center" });
         yPosition += 15;
 
         pdf.setFont("helvetica", "normal");
-        pdf.setFontSize(14); // Aumentei a fonte de 12 para 14
+        pdf.setFontSize(16); // Aumentei a fonte de 12 para 14
 
         // Configurações das colunas centralizadas e aproximadas
         const colSpacing = 7; // Espaçamento entre as colunas
